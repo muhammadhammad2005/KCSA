@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supply-chain-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: supply-chain-app
+  template:
+    metadata:
+      labels:
+        app: supply-chain-app
+      annotations:
+        security.policy/image-scan: "passed"
+        security.policy/image-signed: "true"
+    spec:
+      containers:
+      - name: app
+        image: docker.io/hammad2005/supply-chain-app:v1.0.0
+        ports:
+        - containerPort: 3000

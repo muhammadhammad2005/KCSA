@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cosign-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cosign-webhook
+  namespace: cosign-system

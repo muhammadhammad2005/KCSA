@@ -1,0 +1,12 @@
+# Keys
+keys/
+
+# Node modules (if any)
+app/src/node_modules/
+
+# Reports
+reports/
+
+# Environment files
+*.env
+
