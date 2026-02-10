@@ -1,0 +1,10 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireNonRoot
+metadata:
+  name: dryrun-nonroot
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups: [""]
+      kinds: ["Pod"]

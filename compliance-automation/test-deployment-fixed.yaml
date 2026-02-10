@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app-fixed
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: test-app-fixed
+  template:
+    metadata:
+      labels:
+        app: test-app-fixed
+    spec:
+      containers:
+      - name: app
+        image: busybox
+        command: ["sleep","3600"]
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          privileged: false
