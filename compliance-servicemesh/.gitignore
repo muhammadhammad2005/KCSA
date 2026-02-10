@@ -1,0 +1,20 @@
+# Ignore Istio folder
+istio-1.28.3/
+
+# Ignore local secrets
+*.key
+*.pem
+*.env
+keys/
+secrets/
+
+# Ignore package directories
+node_modules/
+venv/
+__pycache__/
+
+# Ignore build or temporary files
+*.log
+*.tmp
+.DS_Store
+

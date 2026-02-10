@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-dashboard
+  namespace: istio-system
+  labels:
+    grafana_dashboard: "1"
+data:
+  dashboard.json: |
+    {
+      "title": "Service Mesh Security",
+      "panels": [
+        {
+          "title": "mTLS Requests",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "sum(rate(istio_requests_total{security_policy=\"mutual_tls\"}[5m]))"
+            }
+          ]
+        }
+      ]
+    }
