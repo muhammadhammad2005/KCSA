@@ -1,0 +1,18 @@
+groups:
+- name: security_alerts
+  rules:
+  - alert: HighAPIRequestRate
+    expr: rate(http_requests_total[5m]) > 10
+    for: 2m
+
+  - alert: UnauthorizedAccessAttempts
+    expr: rate(http_requests_total{status=~"401|403"}[5m]) > 2
+    for: 1m
+
+  - alert: HighCPUUsage
+    expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+    for: 3m
+
+  - alert: SuspiciousNetworkActivity
+    expr: rate(node_network_receive_bytes_total[5m]) > 10000000
+    for: 2m

@@ -1,0 +1,17 @@
+{
+  "dashboard": {
+    "title": "Security Monitoring",
+    "panels": [
+      {
+        "title": "API Rate",
+        "type": "graph",
+        "targets": [{"expr": "rate(http_requests_total[5m])"}]
+      },
+      {
+        "title": "Failed Auth",
+        "type": "stat",
+        "targets": [{"expr": "rate(http_requests_total{status=~\"401|403\"}[5m])"}]
+      }
+    ]
+  }
+}
