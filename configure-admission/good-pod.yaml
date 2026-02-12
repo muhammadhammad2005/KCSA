@@ -5,21 +5,29 @@ metadata:
   labels:
     app: test
 spec:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    fsGroup: 2000
   containers:
   - name: nginx
     image: nginx:1.21
     securityContext:
-      runAsNonRoot: true
-      runAsUser: 1000
       allowPrivilegeEscalation: false
       readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+        - ALL
     volumeMounts:
     - name: tmp-volume
       mountPath: /tmp
+      readOnly: false
     - name: var-cache-nginx
       mountPath: /var/cache/nginx
+      readOnly: false
     - name: var-run
       mountPath: /var/run
+      readOnly: false
   volumes:
   - name: tmp-volume
     emptyDir: {}
@@ -27,3 +35,4 @@ spec:
     emptyDir: {}
   - name: var-run
     emptyDir: {}
+
