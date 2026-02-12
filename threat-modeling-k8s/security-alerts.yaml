@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: security-alerts-config
+  namespace: threat-modeling-lab
+data:
+  alert-rules.yaml: |
+    groups:
+    - name: kubernetes-security
+      rules:
+      - alert: PrivilegedContainerRunning
+        expr: kube_pod_container_status_running{container="vulnerable-container"} == 1
+        for: 0m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Privileged container detected"
+      - alert: RootContainerRunning
+        expr: kube_pod_container_info{container_id!="",image!~".*pause.*"} and on(pod,namespace) kube_pod_container_status_running == 1
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Container running as root"
