@@ -28,11 +28,6 @@ cd KCSA
 ```
 Explore each folder to apply YAML manifests or run scripts related to security testing, policy enforcement, and compliance checks.
 
-## 🔄 Continuous Updates
-
-This repository is actively maintained.
-More security labs, attack simulations, and compliance scenarios will be added over time.
-
 ## 📘 Notes
 
 - Labs are executed in the Al Nafi cloud lab environment, not local machines
